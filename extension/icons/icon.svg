@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <clipPath id="l"><path d="M0 0 H70 L58 30 L72 52 L56 76 L70 100 L60 128 H0 Z"/></clipPath>
+    <clipPath id="r"><path d="M128 0 H70 L58 30 L72 52 L56 76 L70 100 L60 128 H128 Z"/></clipPath>
+    <g id="tag">
+      <rect x="8" y="8" width="112" height="112" rx="26" fill="#d93025"/>
+      <text x="64" y="84" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900"
+            font-size="56" fill="#fff" letter-spacing="-2">AD</text>
+    </g>
+  </defs>
+  <g clip-path="url(#l)" transform="translate(-5 3) rotate(-4 64 64)"><use href="#tag"/></g>
+  <g clip-path="url(#r)" transform="translate(5 -3) rotate(4 64 64)"><use href="#tag"/></g>
+</svg>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Fixture news page</title>
+  <script src="http://securepubads.g.doubleclick.net:{{PORT}}/tag.js"></script>
+</head>
+<body>
+  <h1>Fixture news page</h1>
+  <div id="content">
+    <p>Article text.</p>
+    <ins class="adsbygoogle" id="adsense" style="display:block;width:300px;height:250px">ad</ins>
+    <div id="div-gpt-ad-1234" style="height:90px">gpt slot</div>
+    <iframe id="syndication" src="http://tpc.googlesyndication.com:{{PORT}}/frame"></iframe>
+    <div class="promo" id="promo">Custom promo</div>
+    <div id="only-on-a">Only hidden on /a</div>
+    <img id="control" src="http://cdn.example.test:{{PORT}}/pixel.gif" alt="">
+  </div>
+  <script>
+    setTimeout(() => {
+      const late = document.createElement('div');
+      late.className = 'ad-banner';
+      late.id = 'late-banner';
+      late.textContent = 'late banner';
+      document.body.append(late);
+      const promo = document.createElement('div');
+      promo.className = 'promo';
+      promo.id = 'late-promo';
+      document.body.append(promo);
+      document.body.dataset.lateDone = '1';
+    }, 300);
+  </script>
+</body>
+</html>

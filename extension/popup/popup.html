@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Ad Ripper</title>
+  <link rel="stylesheet" href="../lib/theme.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <img src="../icons/icon32.png" alt="" width="24" height="24">
+    <h1>Ad Ripper</h1>
+    <label class="switch" title="Enable or pause Ad Ripper everywhere">
+      <input type="checkbox" id="global-enabled">
+      <span></span>
+    </label>
+  </header>
+
+  <main>
+    <section id="site" hidden>
+      <div class="site-row">
+        <div>
+          <div class="host mono" id="host"></div>
+          <div class="muted" id="site-status"></div>
+        </div>
+        <label class="switch" title="Block ads on this site">
+          <input type="checkbox" id="site-enabled">
+          <span></span>
+        </label>
+      </div>
+      <div class="count"><strong id="blocked">0</strong> <span class="muted">requests blocked in this tab</span></div>
+      <button class="btn" id="pick">Pick an element to hide…</button>
+    </section>
+    <p id="not-web" class="muted" hidden>Ad Ripper only works on web pages.</p>
+    <p id="error" class="error" hidden></p>
+  </main>
+
+  <footer>
+    <button class="btn primary" id="open-options">Manage rules</button>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

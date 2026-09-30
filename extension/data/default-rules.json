@@ -1,0 +1,638 @@
+{
+  "version": 1,
+  "description": "Built-in Ad Ripper rules. Keys are derived from action|scope|target, so editing this file and bumping 'version' adds/removes built-ins on upgrade.",
+  "rules": [
+    {
+      "name": "Google DoubleClick / Ad Manager",
+      "action": "block",
+      "target": "doubleclick.net"
+    },
+    {
+      "name": "Google AdSense",
+      "action": "block",
+      "target": "googlesyndication.com"
+    },
+    {
+      "name": "Google Ads conversion & ad services",
+      "action": "block",
+      "target": "googleadservices.com"
+    },
+    {
+      "name": "Google Publisher Tag loader",
+      "action": "block",
+      "target": "googletagservices.com"
+    },
+    {
+      "name": "Google ad service",
+      "action": "block",
+      "target": "adservice.google.com"
+    },
+    {
+      "name": "Google IMA video ad SDK (pre-roll video ads)",
+      "action": "block",
+      "target": "imasdk.googleapis.com"
+    },
+    {
+      "name": "Amazon Advertising",
+      "action": "block",
+      "target": "amazon-adsystem.com"
+    },
+    {
+      "name": "Xandr / AppNexus",
+      "action": "block",
+      "target": "adnxs.com"
+    },
+    {
+      "name": "The Trade Desk",
+      "action": "block",
+      "target": "adsrvr.org"
+    },
+    {
+      "name": "Magnite / Rubicon Project",
+      "action": "block",
+      "target": "rubiconproject.com"
+    },
+    {
+      "name": "PubMatic",
+      "action": "block",
+      "target": "pubmatic.com"
+    },
+    {
+      "name": "OpenX",
+      "action": "block",
+      "target": "openx.net"
+    },
+    {
+      "name": "Criteo",
+      "action": "block",
+      "target": "criteo.com"
+    },
+    {
+      "name": "Criteo CDN",
+      "action": "block",
+      "target": "criteo.net"
+    },
+    {
+      "name": "Index Exchange (Casale Media)",
+      "action": "block",
+      "target": "casalemedia.com"
+    },
+    {
+      "name": "Index Exchange",
+      "action": "block",
+      "target": "indexww.com"
+    },
+    {
+      "name": "Taboola sponsored content",
+      "action": "block",
+      "target": "taboola.com"
+    },
+    {
+      "name": "Outbrain sponsored content",
+      "action": "block",
+      "target": "outbrain.com"
+    },
+    {
+      "name": "Revcontent sponsored content",
+      "action": "block",
+      "target": "revcontent.com"
+    },
+    {
+      "name": "MGID native ads",
+      "action": "block",
+      "target": "mgid.com"
+    },
+    {
+      "name": "ZergNet sponsored links",
+      "action": "block",
+      "target": "zergnet.com"
+    },
+    {
+      "name": "Media.net",
+      "action": "block",
+      "target": "media.net"
+    },
+    {
+      "name": "PulsePoint (ContextWeb)",
+      "action": "block",
+      "target": "contextweb.com"
+    },
+    {
+      "name": "Sharethrough",
+      "action": "block",
+      "target": "sharethrough.com"
+    },
+    {
+      "name": "TripleLift",
+      "action": "block",
+      "target": "triplelift.com"
+    },
+    {
+      "name": "TripleLift ad server",
+      "action": "block",
+      "target": "3lift.com"
+    },
+    {
+      "name": "Yieldmo",
+      "action": "block",
+      "target": "yieldmo.com"
+    },
+    {
+      "name": "Equativ / Smart AdServer",
+      "action": "block",
+      "target": "smartadserver.com"
+    },
+    {
+      "name": "Adform",
+      "action": "block",
+      "target": "adform.net"
+    },
+    {
+      "name": "BidSwitch",
+      "action": "block",
+      "target": "bidswitch.net"
+    },
+    {
+      "name": "Sovrn (Lijit)",
+      "action": "block",
+      "target": "lijit.com"
+    },
+    {
+      "name": "Sovrn",
+      "action": "block",
+      "target": "sovrn.com"
+    },
+    {
+      "name": "33Across",
+      "action": "block",
+      "target": "33across.com"
+    },
+    {
+      "name": "GumGum",
+      "action": "block",
+      "target": "gumgum.com"
+    },
+    {
+      "name": "Kargo",
+      "action": "block",
+      "target": "kargo.com"
+    },
+    {
+      "name": "Sonobi",
+      "action": "block",
+      "target": "sonobi.com"
+    },
+    {
+      "name": "OneTag",
+      "action": "block",
+      "target": "onetag-sys.com"
+    },
+    {
+      "name": "EMX Digital",
+      "action": "block",
+      "target": "emxdgt.com"
+    },
+    {
+      "name": "AdKernel",
+      "action": "block",
+      "target": "adkernel.com"
+    },
+    {
+      "name": "Adtelligent",
+      "action": "block",
+      "target": "adtelligent.com"
+    },
+    {
+      "name": "Smaato",
+      "action": "block",
+      "target": "smaato.net"
+    },
+    {
+      "name": "Yieldlab",
+      "action": "block",
+      "target": "yieldlab.net"
+    },
+    {
+      "name": "Nativo native ads",
+      "action": "block",
+      "target": "nativo.com"
+    },
+    {
+      "name": "Undertone",
+      "action": "block",
+      "target": "undertone.com"
+    },
+    {
+      "name": "ZEDO",
+      "action": "block",
+      "target": "zedo.com"
+    },
+    {
+      "name": "Advertising.com",
+      "action": "block",
+      "target": "advertising.com"
+    },
+    {
+      "name": "AdRoll retargeting ads",
+      "action": "block",
+      "target": "adroll.com"
+    },
+    {
+      "name": "Sizmek / Amazon ad server",
+      "action": "block",
+      "target": "serving-sys.com"
+    },
+    {
+      "name": "Flashtalking",
+      "action": "block",
+      "target": "flashtalking.com"
+    },
+    {
+      "name": "Integral Ad Science (ad verification)",
+      "action": "block",
+      "target": "adsafeprotected.com"
+    },
+    {
+      "name": "Moat (ad verification)",
+      "action": "block",
+      "target": "moatads.com"
+    },
+    {
+      "name": "DoubleVerify (ad verification)",
+      "action": "block",
+      "target": "doubleverify.com"
+    },
+    {
+      "name": "Teads outstream video ads",
+      "action": "block",
+      "target": "teads.tv"
+    },
+    {
+      "name": "SpotX video ads",
+      "action": "block",
+      "target": "spotxchange.com"
+    },
+    {
+      "name": "SpotX video ads CDN",
+      "action": "block",
+      "target": "spotx.tv"
+    },
+    {
+      "name": "SpringServe video ads",
+      "action": "block",
+      "target": "springserve.com"
+    },
+    {
+      "name": "Aniview video ads",
+      "action": "block",
+      "target": "aniview.com"
+    },
+    {
+      "name": "Primis video ads",
+      "action": "block",
+      "target": "primis.tech"
+    },
+    {
+      "name": "Connatix video ads",
+      "action": "block",
+      "target": "connatix.com"
+    },
+    {
+      "name": "Vidazoo video ads",
+      "action": "block",
+      "target": "vidazoo.com"
+    },
+    {
+      "name": "Unruly video ads",
+      "action": "block",
+      "target": "unrulymedia.com"
+    },
+    {
+      "name": "PopAds pop-unders",
+      "action": "block",
+      "target": "popads.net"
+    },
+    {
+      "name": "PopCash pop-unders",
+      "action": "block",
+      "target": "popcash.net"
+    },
+    {
+      "name": "PropellerAds",
+      "action": "block",
+      "target": "propellerads.com"
+    },
+    {
+      "name": "Adsterra",
+      "action": "block",
+      "target": "adsterra.com"
+    },
+    {
+      "name": "ExoClick",
+      "action": "block",
+      "target": "exoclick.com"
+    },
+    {
+      "name": "JuicyAds",
+      "action": "block",
+      "target": "juicyads.com"
+    },
+    {
+      "name": "HilltopAds",
+      "action": "block",
+      "target": "hilltopads.net"
+    },
+    {
+      "name": "A-Ads",
+      "action": "block",
+      "target": "a-ads.com"
+    },
+    {
+      "name": "Adblade",
+      "action": "block",
+      "target": "adblade.com"
+    },
+    {
+      "name": "BuySellAds",
+      "action": "block",
+      "target": "buysellads.com"
+    },
+    {
+      "name": "Carbon Ads",
+      "action": "block",
+      "target": "carbonads.net"
+    },
+    {
+      "name": "Carbon Ads CDN",
+      "action": "block",
+      "target": "carbonads.com"
+    },
+    {
+      "name": "AdSense slots",
+      "action": "hide",
+      "target": "ins.adsbygoogle"
+    },
+    {
+      "name": "AdSense containers",
+      "action": "hide",
+      "target": ".adsbygoogle"
+    },
+    {
+      "name": "Google Ad Manager iframes",
+      "action": "hide",
+      "target": "[id^=\"google_ads_iframe\"]"
+    },
+    {
+      "name": "Google Publisher Tag slots",
+      "action": "hide",
+      "target": "[id^=\"div-gpt-ad\"]"
+    },
+    {
+      "name": "Google Ad Manager rendered slots",
+      "action": "hide",
+      "target": "[data-google-query-id]"
+    },
+    {
+      "name": "Google Active View ads",
+      "action": "hide",
+      "target": ".GoogleActiveViewElement"
+    },
+    {
+      "name": "AMP ads",
+      "action": "hide",
+      "target": "amp-ad"
+    },
+    {
+      "name": "AMP Taboola embeds",
+      "action": "hide",
+      "target": "amp-embed[type=\"taboola\"]"
+    },
+    {
+      "name": "Taboola widgets",
+      "action": "hide",
+      "target": "[id^=\"taboola-\"]"
+    },
+    {
+      "name": "Taboola related-content widgets",
+      "action": "hide",
+      "target": ".trc_related_container"
+    },
+    {
+      "name": "Outbrain widgets",
+      "action": "hide",
+      "target": ".OUTBRAIN"
+    },
+    {
+      "name": "Outbrain widgets (alt)",
+      "action": "hide",
+      "target": ".ob-widget"
+    },
+    {
+      "name": "Revcontent widgets",
+      "action": "hide",
+      "target": "[id^=\"rc-widget\"]"
+    },
+    {
+      "name": "MGID widgets",
+      "action": "hide",
+      "target": ".mgbox"
+    },
+    {
+      "name": "ZergNet widgets",
+      "action": "hide",
+      "target": ".zergnet-widget"
+    },
+    {
+      "name": "Carbon Ads",
+      "action": "hide",
+      "target": "#carbonads"
+    },
+    {
+      "name": "Generic: .ad-banner",
+      "action": "hide",
+      "target": ".ad-banner"
+    },
+    {
+      "name": "Generic: .banner-ad",
+      "action": "hide",
+      "target": ".banner-ad"
+    },
+    {
+      "name": "Generic: .ad-container",
+      "action": "hide",
+      "target": ".ad-container"
+    },
+    {
+      "name": "Generic: .ad-wrapper",
+      "action": "hide",
+      "target": ".ad-wrapper"
+    },
+    {
+      "name": "Generic: .ad-slot",
+      "action": "hide",
+      "target": ".ad-slot"
+    },
+    {
+      "name": "Generic: .ad-unit",
+      "action": "hide",
+      "target": ".ad-unit"
+    },
+    {
+      "name": "Generic: .ad-placeholder",
+      "action": "hide",
+      "target": ".ad-placeholder"
+    },
+    {
+      "name": "Generic: .advertisement",
+      "action": "hide",
+      "target": ".advertisement"
+    },
+    {
+      "name": "Generic: .adsbox",
+      "action": "hide",
+      "target": ".adsbox"
+    },
+    {
+      "name": "Generic: .sidebar-ad",
+      "action": "hide",
+      "target": ".sidebar-ad"
+    },
+    {
+      "name": "Generic: .leaderboard-ad",
+      "action": "hide",
+      "target": ".leaderboard-ad"
+    },
+    {
+      "name": "Generic: [data-ad-slot]",
+      "action": "hide",
+      "target": "[data-ad-slot]"
+    },
+    {
+      "name": "Generic: [data-ad-unit]",
+      "action": "hide",
+      "target": "[data-ad-unit]"
+    },
+    {
+      "name": "Generic: labelled advertisements",
+      "action": "hide",
+      "target": "[aria-label=\"advertisement\" i]"
+    },
+    {
+      "name": "Teads in-read video ads",
+      "action": "hide",
+      "target": ".teads-inread"
+    },
+    {
+      "name": "DoubleClick click-through links",
+      "action": "hide",
+      "target": "a[href^=\"https://ad.doubleclick.net/\"]"
+    },
+    {
+      "name": "DoubleClick iframes",
+      "action": "remove",
+      "target": "iframe[src*=\"doubleclick.net\"]"
+    },
+    {
+      "name": "AdSense iframes",
+      "action": "remove",
+      "target": "iframe[src*=\"googlesyndication.com\"]"
+    },
+    {
+      "name": "Amazon ad iframes",
+      "action": "remove",
+      "target": "iframe[src*=\"amazon-adsystem.com\"]"
+    },
+    {
+      "name": "Taboola iframes",
+      "action": "remove",
+      "target": "iframe[src*=\"taboola.com\"]"
+    },
+    {
+      "name": "Outbrain iframes",
+      "action": "remove",
+      "target": "iframe[src*=\"outbrain.com\"]"
+    },
+    {
+      "name": "YouTube: masthead banner",
+      "action": "hide",
+      "target": "#masthead-ad",
+      "scope_type": "domain",
+      "scope_value": "youtube.com"
+    },
+    {
+      "name": "YouTube: in-feed ad slots",
+      "action": "hide",
+      "target": "ytd-ad-slot-renderer",
+      "scope_type": "domain",
+      "scope_value": "youtube.com"
+    },
+    {
+      "name": "YouTube: home grid ad tiles",
+      "action": "hide",
+      "target": "ytd-rich-item-renderer:has(ytd-ad-slot-renderer)",
+      "scope_type": "domain",
+      "scope_value": "youtube.com"
+    },
+    {
+      "name": "YouTube: in-feed ads",
+      "action": "hide",
+      "target": "ytd-in-feed-ad-layout-renderer",
+      "scope_type": "domain",
+      "scope_value": "youtube.com"
+    },
+    {
+      "name": "YouTube: promo banners",
+      "action": "hide",
+      "target": "ytd-banner-promo-renderer",
+      "scope_type": "domain",
+      "scope_value": "youtube.com"
+    },
+    {
+      "name": "YouTube: promoted results",
+      "action": "hide",
+      "target": "ytd-promoted-sparkles-web-renderer",
+      "scope_type": "domain",
+      "scope_value": "youtube.com"
+    },
+    {
+      "name": "YouTube: promoted videos",
+      "action": "hide",
+      "target": "ytd-promoted-video-renderer",
+      "scope_type": "domain",
+      "scope_value": "youtube.com"
+    },
+    {
+      "name": "YouTube: companion ads beside player",
+      "action": "hide",
+      "target": "#player-ads",
+      "scope_type": "domain",
+      "scope_value": "youtube.com"
+    },
+    {
+      "name": "YouTube: in-video overlay banners",
+      "action": "hide",
+      "target": ".ytp-ad-overlay-container",
+      "scope_type": "domain",
+      "scope_value": "youtube.com"
+    },
+    {
+      "name": "YouTube: ads engagement panel",
+      "action": "hide",
+      "target": "ytd-engagement-panel-section-list-renderer[target-id=\"engagement-panel-ads\"]",
+      "scope_type": "domain",
+      "scope_value": "youtube.com"
+    },
+    {
+      "name": "YouTube: skip in-player video ads",
+      "action": "snippet",
+      "target": "skip-video-ads",
+      "scope_type": "domain",
+      "scope_value": "youtube.com"
+    },
+    {
+      "name": "All sites: pause auto-playing video ads",
+      "action": "snippet",
+      "target": "pause-ad-videos"
+    }
+  ]
+}

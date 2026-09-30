@@ -1,0 +1,18 @@
+{
+  "name": "ad-ripper",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chrome extension that removes ads, with rules stored in a local SQLite database.",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test test/unit.test.js",
+    "test:e2e": "node test/e2e.mjs",
+    "test:all": "npm test && npm run test:e2e",
+    "vendor": "node scripts/vendor.mjs",
+    "icons": "node scripts/make-icons.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.63.0",
+    "sql.js": "^1.14.2"
+  }
+}

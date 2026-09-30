@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ad Ripper Rules</title>
+  <link rel="icon" href="../icons/icon32.png">
+  <link rel="stylesheet" href="../lib/theme.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="../icons/icon48.png" alt="" width="32" height="32">
+      <div>
+        <h1>Ad Ripper</h1>
+        <div class="muted small" id="summary">Loading…</div>
+      </div>
+    </div>
+    <label class="global">
+      <span id="global-label">Enabled</span>
+      <span class="switch"><input type="checkbox" id="global-enabled"><span></span></span>
+    </label>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="rules" aria-selected="true">Rules</button>
+    <button role="tab" data-tab="allowlist">Allowlist</button>
+    <button role="tab" data-tab="settings">Settings &amp; data</button>
+  </nav>
+
+  <main>
+    <div id="banner" class="banner" hidden></div>
+
+    <!-- Rules ------------------------------------------------------------ -->
+    <section id="tab-rules" class="tab-panel">
+      <div class="toolbar">
+        <input type="search" id="search" placeholder="Search rules…" aria-label="Search rules">
+        <select id="filter-action" aria-label="Filter by action">
+          <option value="">All actions</option>
+        </select>
+        <select id="filter-source" aria-label="Filter by source">
+          <option value="">Built-in &amp; custom</option>
+          <option value="builtin">Built-in</option>
+          <option value="custom">Custom</option>
+        </select>
+        <select id="filter-status" aria-label="Filter by status">
+          <option value="">Any status</option>
+          <option value="enabled">Enabled</option>
+          <option value="disabled">Disabled</option>
+          <option value="error">Has problem</option>
+        </select>
+        <span class="spacer"></span>
+        <button class="btn primary" id="add-rule">+ Add rule</button>
+      </div>
+
+      <div class="table-wrap">
+        <table class="rules">
+          <thead>
+            <tr>
+              <th class="col-on">On</th>
+              <th>Rule</th>
+              <th class="col-action">Action</th>
+              <th class="col-scope">Applies to</th>
+              <th class="col-tools"></th>
+            </tr>
+          </thead>
+          <tbody id="rules-body"></tbody>
+        </table>
+        <p id="rules-empty" class="empty" hidden>No rules match these filters.</p>
+      </div>
+    </section>
+
+    <!-- Allowlist ---------------------------------------------------------- -->
+    <section id="tab-allowlist" class="tab-panel" hidden>
+      <p class="muted">Ad Ripper does nothing on these sites (and their subdomains). You can also toggle a site from the toolbar popup.</p>
+      <form id="allow-form" class="inline-form">
+        <input id="allow-domain" placeholder="example.com" aria-label="Domain to allow" required>
+        <button class="btn primary">Add site</button>
+      </form>
+      <ul id="allow-list" class="list"></ul>
+      <p id="allow-empty" class="empty" hidden>No sites are allowlisted.</p>
+    </section>
+
+    <!-- Settings --------------------------------------------------------- -->
+    <section id="tab-settings" class="tab-panel" hidden>
+      <div class="card">
+        <h2>Built-in rules</h2>
+        <p class="muted">Ad Ripper ships with <strong id="builtin-count">0</strong> rules. You can edit or disable them freely; resetting restores every built-in rule to the way it shipped. Your custom rules and allowlist are not touched.</p>
+        <button class="btn danger" id="reset-builtins">Reset built-in rules…</button>
+      </div>
+
+      <div class="card">
+        <h2>JavaScript injection</h2>
+        <p id="us-status"></p>
+        <div id="us-help" class="muted" hidden>
+          <p>Chrome only runs extension-provided scripts once you allow it:</p>
+          <ol>
+            <li>Open <span class="mono">chrome://extensions</span>.</li>
+            <li><strong>Chrome 138+</strong>: click <em>Details</em> on Ad Ripper and turn on <em>Allow User Scripts</em>.<br>
+                <strong>Chrome 120–137</strong>: turn on <em>Developer mode</em> (top-right).</li>
+            <li>Come back here and click <em>Re-check</em>.</li>
+          </ol>
+        </div>
+        <button class="btn" id="resync">Re-check &amp; re-apply rules</button>
+      </div>
+
+      <div class="card">
+        <h2>Database</h2>
+        <p class="muted">All rules, the allowlist and settings live in a local SQLite database (<span id="db-size">–</span>) stored in the extension's IndexedDB. Export it to back it up or open it with any SQLite tool; import to restore.</p>
+        <div class="row-buttons">
+          <button class="btn" id="export-db">Export .sqlite</button>
+          <button class="btn" id="import-db">Import .sqlite…</button>
+          <input type="file" id="import-file" accept=".sqlite,.db,application/x-sqlite3,application/vnd.sqlite3" hidden>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Rule reference</h2>
+        <dl class="reference" id="reference"></dl>
+        <h3>Scopes</h3>
+        <dl class="reference">
+          <dt>All sites</dt><dd>Every page.</dd>
+          <dt>Domain</dt><dd><span class="mono">example.com</span> matches example.com and every subdomain (www.example.com, news.example.com…). For network rules this means requests <em>made by</em> pages on that domain.</dd>
+          <dt>URL pattern</dt><dd>Matched against the full page URL. <span class="mono">*</span> is a wildcard, e.g. <span class="mono">https://example.com/news/*</span>. A pattern without <span class="mono">*</span> matches any URL that starts with it. Not available for network rules.</dd>
+        </dl>
+        <h3>Network filter syntax</h3>
+        <dl class="reference">
+          <dt><span class="mono">ads.example.com</span></dt><dd>A bare domain blocks that domain and its subdomains.</dd>
+          <dt><span class="mono">||example.com/ads/*</span></dt><dd>Chrome <em>urlFilter</em> syntax: <span class="mono">||</span> anchors a domain, <span class="mono">|</span> anchors start/end, <span class="mono">^</span> is a separator, <span class="mono">*</span> is a wildcard.</dd>
+          <dt><span class="mono">/banner\d+\.gif/</span></dt><dd>Text wrapped in slashes is a regular expression.</dd>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rule editor ------------------------------------------------------------ -->
+  <dialog id="editor">
+    <form id="rule-form" method="dialog" novalidate>
+      <header>
+        <h2 id="editor-title">Add rule</h2>
+        <span class="badge builtin" id="editor-builtin" hidden>Built-in</span>
+      </header>
+
+      <div class="fields">
+        <label class="field">
+          <span>Action</span>
+          <select name="action" id="f-action"></select>
+          <small class="muted" id="action-help"></small>
+        </label>
+
+        <label class="field">
+          <span>Name <small class="muted">(optional)</small></span>
+          <input name="name" id="f-name" autocomplete="off">
+        </label>
+
+        <div class="field-row">
+          <label class="field">
+            <span>Applies to</span>
+            <select name="scope_type" id="f-scope"></select>
+          </label>
+          <label class="field grow" id="scope-value-field">
+            <span id="scope-value-label">Domain</span>
+            <input name="scope_value" id="f-scope-value" autocomplete="off" spellcheck="false">
+          </label>
+        </div>
+
+        <label class="field" data-for="block hide remove inject_html snippet" id="target-field">
+          <span id="target-label">Target</span>
+          <input name="target" id="f-target" class="mono" autocomplete="off" spellcheck="false">
+          <select name="snippet" id="f-snippet" hidden></select>
+          <small class="muted" id="target-help"></small>
+        </label>
+
+        <label class="field" data-for="inject_html">
+          <span>Insert position</span>
+          <select name="position" id="f-position">
+            <option value="beforeend">Inside, at the end (beforeend)</option>
+            <option value="afterbegin">Inside, at the start (afterbegin)</option>
+            <option value="beforebegin">Before the element (beforebegin)</option>
+            <option value="afterend">After the element (afterend)</option>
+          </select>
+        </label>
+
+        <fieldset class="field" data-for="block">
+          <legend>Resource types <small class="muted">(none checked = everything except top-level pages)</small></legend>
+          <div class="checks" id="f-types"></div>
+        </fieldset>
+
+        <div class="field-row" data-for="inject_js">
+          <label class="field">
+            <span>Run at</span>
+            <select name="runAt" id="f-runat">
+              <option value="document_idle">Page idle</option>
+              <option value="document_end">DOM ready</option>
+              <option value="document_start">Document start</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>World</span>
+            <select name="world" id="f-world">
+              <option value="MAIN">Page (MAIN)</option>
+              <option value="USER_SCRIPT">Isolated (USER_SCRIPT)</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="field" data-for="inject_css inject_html inject_js">
+          <span id="content-label">Content</span>
+          <textarea name="content" id="f-content" class="mono" rows="8" spellcheck="false"></textarea>
+        </label>
+
+        <label class="check-inline">
+          <input type="checkbox" name="enabled" id="f-enabled" checked> Enabled
+        </label>
+
+        <p class="form-error" id="form-error" hidden></p>
+        <p class="form-warning" id="rule-error" hidden></p>
+      </div>
+
+      <footer>
+        <button type="button" class="btn danger" id="delete-rule" hidden>Delete</button>
+        <span class="spacer"></span>
+        <button type="button" class="btn" id="cancel-edit">Cancel</button>
+        <button type="submit" class="btn primary" id="save-rule">Save rule</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <dialog id="confirm">
+    <form method="dialog">
+      <p id="confirm-text"></p>
+      <footer>
+        <span class="spacer"></span>
+        <button class="btn" value="cancel">Cancel</button>
+        <button class="btn primary" value="ok" id="confirm-ok">OK</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" hidden></div>
+
+  <script src="../lib/rules.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
