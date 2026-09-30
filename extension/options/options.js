@@ -232,7 +232,7 @@ function syncEditorFields() {
   const scopeNow = $('f-scope').value;
   $('scope-value-field').hidden = scopeNow === 'all';
   $('scope-value-label').textContent = scopeNow === 'domain' ? 'Domain' : 'URL pattern';
-  $('f-scope-value').placeholder = scopeNow === 'domain' ? 'example.com' : 'https://example.com/articles/*';
+  $('f-scope-value').placeholder = scopeNow === 'domain' ? 'example.com (subdomains included)' : 'https://example.com/articles/*';
 
   const t = TARGET_UI[action];
   if (t) {

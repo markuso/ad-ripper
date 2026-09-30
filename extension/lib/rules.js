@@ -25,7 +25,7 @@
 
   const SCOPES = {
     all: 'All sites',
-    domain: 'Domain (includes subdomains)',
+    domain: 'Domain',
     url: 'URL pattern',
   };
 
