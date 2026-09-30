@@ -143,7 +143,8 @@ dialog footer { display: flex; gap: 8px; padding: 14px 20px; border-top: 1px sol
 .fields { padding: 16px 20px; display: grid; gap: 14px; max-height: calc(100vh - 200px); overflow: auto; }
 .field { display: grid; gap: 5px; min-width: 0; border: 0; padding: 0; margin: 0; }
 .field > span, .field legend { font-weight: 600; font-size: 13px; }
-.field input, .field select, .field textarea {
+.field legend { padding: 0; margin-bottom: 6px; }
+.field input:not([type='checkbox']), .field select, .field textarea {
   width: 100%;
   padding: 7px 10px;
   border: 1px solid var(--border);
@@ -155,7 +156,8 @@ dialog footer { display: flex; gap: 8px; padding: 14px 20px; border-top: 1px sol
 .field-row .field { flex: 1 1 180px; }
 .field-row .field.grow { flex: 2 1 240px; }
 .checks { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 4px 12px; font-size: 13px; }
-.checks label, .check-inline { display: flex; align-items: center; gap: 6px; }
+.checks label, .check-inline { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+.checks input, .check-inline input { margin: 0; flex: none; }
 .form-error { color: var(--accent); margin: 0; }
 .form-warning { color: var(--warn); background: var(--warn-soft); padding: 8px 10px; border-radius: 8px; margin: 0; }
 
