@@ -165,6 +165,34 @@ try {
     await page.close();
   });
 
+  await step('element picker: click an element, then click the panel\'s Save button', async () => {
+    const page = await visit(context, site('/'));
+    await page.bringToFront();
+    const tab = await options.evaluate(async (url) => (await chrome.tabs.query({ url }))[0], site('/'));
+    await options.evaluate((id) => chrome.tabs.sendMessage(id, { type: 'startPicker' }), tab.id);
+
+    const box = await page.locator('#only-on-a').boundingBox();
+    await page.mouse.move(box.x + 5, box.y + box.height / 2);
+    await page.mouse.click(box.x + 5, box.y + box.height / 2);
+    if (shots) await page.screenshot({ path: join(shots, 'picker.png') });
+
+    // The panel lives in a closed shadow root, so click its Save button by position:
+    // it is the bottom-right button of a panel pinned 16px from the viewport corner.
+    const { width, height } = page.viewportSize();
+    await page.mouse.click(width - 70, height - 46);
+
+    await page.waitForFunction(() => getComputedStyle(document.querySelector('#only-on-a')).display === 'none');
+    const state = await call('getState');
+    const rule = state.rules.find((r) => r.name === 'Picked on news.test');
+    assert.ok(rule, 'picker rule saved');
+    assert.equal(rule.target, '#only-on-a');
+    assert.equal(rule.scope_type, 'domain');
+    assert.equal(rule.scope_value, 'news.test');
+    assert.equal(await page.evaluate(() => !!document.querySelector('ad-ripper-picker')), false, 'picker closed');
+    await call('deleteRule', { id: rule.id });
+    await page.close();
+  });
+
   await step('invalid network filters are reported instead of breaking everything', async () => {
     const id = await call('addRule', { rule: { action: 'block', target: '||*bad' } });
     const state = await call('getState');

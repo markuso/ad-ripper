@@ -374,7 +374,6 @@
 
     const $ = (s) => root.querySelector(s);
     const box = $('.box');
-    const panel = $('.panel');
     let hovered = null;
     let selected = null;
 
@@ -421,8 +420,12 @@
       place(el, box);
     };
 
+    // The shadow root is closed, so document-level listeners never see nodes inside it:
+    // events from the panel arrive retargeted to the host element.
+    const fromPanel = (e) => e.target === host;
+
     const onClick = (e) => {
-      if (e.composedPath().includes(panel)) return;
+      if (fromPanel(e)) return;
       e.preventDefault();
       e.stopImmediatePropagation();
       if (!selected && hovered) select(hovered);
@@ -433,7 +436,7 @@
     };
 
     const swallow = (e) => {
-      if (!e.composedPath().includes(panel)) {
+      if (!fromPanel(e)) {
         e.preventDefault();
         e.stopImmediatePropagation();
       }
